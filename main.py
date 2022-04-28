@@ -74,18 +74,6 @@ for i in range(0,len(linkPermanenteList)):
 for i in listaTweetsCompletos:
     i.funcRetorno()
 '''
-def maiorEngajamento(listaTweets):
-    maior = listaTweets[0].engajamentos
-    maiorTweet = listaTweets[0]
-    #for i in range(0,len(listaTweets)):
-    #    print(listaTweets[i].getLinkPermanente())
-    for l in listaTweets:
-        if(maior < l.engajamentos):
-            maior = l.engajamentos
-            maiorTweet = l
-    return maiorTweet.funcRetorno()
-
-##maiorEngajamento(listaTweetsCompletos)
 
 def maiorGenerico(listaTweets,termo):
     maior = listaTweets[0].funcRetornaTermo(termo)
@@ -96,15 +84,9 @@ def maiorGenerico(listaTweets,termo):
             maiorTweet = l
     return maiorTweet.funcRetorno()
     
-def maiorImpressoes(listaTweets):
-    maior = listaTweets[0].impressoes
-    maiorTweet = listaTweets[0]
-    #for i in range(0,len(listaTweets)):
-    #    print(listaTweets[i].getLinkPermanente())
-    for l in listaTweets:
-        if(maior < l.impressoes):
-            maior = l.impressoes
-            maiorTweet = l
-    return maiorTweet.funcRetorno()   
-
-maiorImpressoes(listaTweetsCompletos)
+'''
+maiorGenerico(listaTweetsCompletos,"engajamentos")
+maiorGenerico(listaTweetsCompletos,"impressoes")
+maiorGenerico(listaTweetsCompletos,"retweets")
+maiorGenerico(listaTweetsCompletos,"favoritos")
+'''
