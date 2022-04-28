@@ -47,6 +47,7 @@ retweetsList = tabela['retweets'].tolist()
 respostasList = tabela['respostas'].tolist()
 favoritosList = tabela['favoritos'].tolist()
 cliquesPerfilList = tabela['cliques no perfil do usuário:'].tolist()
+
  
 # printing list data
 '''
@@ -60,7 +61,7 @@ print('respostas:', respostas)
 print('favoritos:', favoritos)
 print('cliques no perfil do usuário:', cliquesPerfil)
 '''
-
+##adiciona as structs de tweet a um array
 listaTweetsCompletos = []
 
 for i in range(0,len(linkPermanenteList)):
@@ -73,8 +74,37 @@ for i in range(0,len(linkPermanenteList)):
 for i in listaTweetsCompletos:
     i.funcRetorno()
 '''
-#t1 = idT(1,'fui jogar bola hoje')
-#print(t1.id)
-#print(t1.texto)
-#print(t1.funcRetorno)
-#t1.funcRetorno()
+def maiorEngajamento(listaTweets):
+    maior = listaTweets[0].engajamentos
+    maiorTweet = listaTweets[0]
+    #for i in range(0,len(listaTweets)):
+    #    print(listaTweets[i].getLinkPermanente())
+    for l in listaTweets:
+        if(maior < l.engajamentos):
+            maior = l.engajamentos
+            maiorTweet = l
+    return maiorTweet.funcRetorno()
+
+##maiorEngajamento(listaTweetsCompletos)
+
+def maiorGenerico(listaTweets,termo):
+    maior = listaTweets[0].funcRetornaTermo(termo)
+    maiorTweet = listaTweets[0]
+    for l in listaTweets:
+        if(maior < l.funcRetornaTermo(termo)):
+            maior = l.funcRetornaTermo(termo)
+            maiorTweet = l
+    return maiorTweet.funcRetorno()
+    
+def maiorImpressoes(listaTweets):
+    maior = listaTweets[0].impressoes
+    maiorTweet = listaTweets[0]
+    #for i in range(0,len(listaTweets)):
+    #    print(listaTweets[i].getLinkPermanente())
+    for l in listaTweets:
+        if(maior < l.impressoes):
+            maior = l.impressoes
+            maiorTweet = l
+    return maiorTweet.funcRetorno()   
+
+maiorImpressoes(listaTweetsCompletos)
