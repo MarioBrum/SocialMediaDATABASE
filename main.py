@@ -90,3 +90,19 @@ maiorGenerico(listaTweetsCompletos,"impressoes")
 maiorGenerico(listaTweetsCompletos,"retweets")
 maiorGenerico(listaTweetsCompletos,"favoritos")
 '''
+##vou ter que fazer média
+def horariosComMaisPostagens(listaTweets):
+    listaDeHorarios = []
+    for i in range (0,24):
+        listaDeHorarios.append(0)
+    for l in listaTweets:
+        vetorHorarios = l.horario.split()       #separa apenas o horario
+        #print(vetorHorarios[1])
+        #print(int(vetorHorarios[1][0:2]))       #numero apenas da HORA do tweet
+        listaDeHorarios[int(vetorHorarios[1][0:2])] = listaDeHorarios[int(vetorHorarios[1][0:2])] + 1
+    print(listaDeHorarios)
+
+    #print(listaDeHorarios)
+    #print(len(listaDeHorarios))
+
+horariosComMaisPostagens(listaTweetsCompletos)
