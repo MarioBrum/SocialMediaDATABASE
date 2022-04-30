@@ -125,4 +125,71 @@ def horarioComMaisTweets(listaDeHorarios):
             indiceHora = i   
     return(indiceHora,maior,total)  #retorna o horario/numero de Tweets do mesmo/total de tweets
 
-#print(horarioComMaisTweets(estruturaDeDadosHorarios[0]))  #horario que mais postou, quantas postagens
+#print(horarioComMaisTweets(estruturaDeDadosHorarios[0]))  #horario que mais postou, quantas postagens, total de postagens
+
+#pesquisa o horario em que a media de impressoes foi maior
+#junto com a porcentagem de impressoes nesse horario
+def horarioComMaisImpressoes(listaDeHorarios,listaDeTweetsPorHorario):
+    listaDeMediasDeImpressoes = []
+    #enche a lista com elementos vazios
+    for i in range (0,24):
+        listaDeMediasDeImpressoes.append(0)
+
+    for j in range(0,24):
+        numeroImpressoes = 0
+        for lista in listaDeTweetsPorHorario[j]:
+            numeroImpressoes += lista.impressoes
+        listaDeMediasDeImpressoes[j] = numeroImpressoes
+
+    #acha o horario com mais impressoes
+    maior = listaDeMediasDeImpressoes[0]
+    maiorIndice = 0
+    for i in range(0,24):
+        if(listaDeMediasDeImpressoes[i] > maior):
+            maior = listaDeMediasDeImpressoes[i]
+            maiorIndice = i
+    return(maiorIndice, maior/sum(listaDeMediasDeImpressoes))   #retorna o horario com mais impressoes e a porcentagem de impressoes nesse horario
+    #print(listaDeMediasDeImpressoes)
+    #print(totalDeImpressoes)
+    #print(sum(listaDeMediasDeImpressoes))
+
+#horarioComMaisImpressoes(estruturaDeDadosHorarios[0],estruturaDeDadosHorarios[1])
+
+#pesquisa o horario em que a media de engajamento foi maior
+#junto com a porcentagem de engajamento nesse horario
+def horarioComMaisEngajamento(listaDeHorarios,listaDeTweetsPorHorario):
+    listaDeMediaDeEngajamentos = []
+    #enche a lista com elementos vazios
+    for i in range (0,24):
+        listaDeMediaDeEngajamentos.append(0)
+
+    for j in range(0,24):
+        numeroEngajamentos = 0
+        for lista in listaDeTweetsPorHorario[j]:
+            numeroEngajamentos += lista.engajamentos
+        listaDeMediaDeEngajamentos[j] = numeroEngajamentos
+
+    #acha o horario com mais impressoes
+    maior = listaDeMediaDeEngajamentos[0]
+    maiorIndice = 0
+    for i in range(0,24):
+        if(listaDeMediaDeEngajamentos[i] > maior):
+            maior = listaDeMediaDeEngajamentos[i]
+            maiorIndice = i
+    return(maiorIndice, maior/sum(listaDeMediaDeEngajamentos))   #retorna o horario com mais engajamentos e a porcentagem de engajamentos nesse horario
+    #print(listaDeMediasDeImpressoes)
+    #print(totalDeImpressoes)
+    #print(sum(listaDeMediasDeImpressoes))
+
+#print(horarioComMaisEngajamento(estruturaDeDadosHorarios[0],estruturaDeDadosHorarios[1]))
+
+#pesquisa o horario em que a media de engajamento foi maior
+#junto com a porcentagem de engajamento nesse horario
+def horarioComMaisGenerico(listaDeHorarios,listaDeTweetsPorHorario,termo):
+    return 0
+
+#retorna quantos tweets possuem tal palavra
+#junto com a porcentagem de engajamento sobre os tweets com aquela palavra
+def pesquisaPorPalavras(listaDeTweets):
+    return 0
+
