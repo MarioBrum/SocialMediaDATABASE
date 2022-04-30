@@ -155,6 +155,82 @@ def horarioComMaisGenerico(listaDeHorarios,listaDeTweetsPorHorario,termo):
 
 #retorna quantos tweets possuem tal palavra
 #junto com a porcentagem de engajamento sobre os tweets com aquela palavra
-def pesquisaPorPalavras(listaDeTweets):
-    return 0
+def pesquisaPorPalavras(listaDeTweets,palavra):
+    tweetsComPalavra = 0
+    impressoesPalavra = 0
+    engajamentosPalavra = 0
+    retweetsPalavra = 0
+    respostasPalavra = 0
+    favoritosPalavra = 0
+    cliquesNoPerfilPalavra = 0
+    
+    impressoesTotal = 0
+    engajamentosTotal = 0
+    retweetsTotal = 0
+    respostasTotal = 0
+    favoritosTotal = 0
+    cliquesNoPerfilTotal = 0
+    for tweet in listaDeTweets:
+        if palavra in tweet.texto: #se o texto contem a palavra
+            tweetsComPalavra+= 1
+            impressoesPalavra += tweet.impressoes
+            engajamentosPalavra += tweet.engajamentos
+            retweetsPalavra += tweet.retweets
+            respostasPalavra += tweet.respostas
+            favoritosPalavra += tweet.favoritos
+            cliquesNoPerfilPalavra += tweet.cliquesNoPerfil
+        impressoesTotal += tweet.impressoes
+        engajamentosTotal += tweet.engajamentos
+        retweetsTotal += tweet.retweets
+        respostasTotal += tweet.respostas
+        favoritosTotal += tweet.favoritos
+        cliquesNoPerfilTotal += tweet.cliquesNoPerfil
+        
+    return (tweetsComPalavra,
+            impressoesPalavra,
+            engajamentosPalavra,                             
+            retweetsPalavra,
+            respostasPalavra,
+            favoritosPalavra,
+            cliquesNoPerfilPalavra)
+#print(pesquisaPorPalavras(listaTweetsCompletos,"amigo"))
 
+
+#retorna quantos tweets possuem tal palavra
+#junto com a porcentagem de engajamento sobre os tweets com aquela palavra
+def pesquisaPorPalavrasMEDIA(listaDeTweets,palavra):
+    impressoesPalavra = 0
+    engajamentosPalavra = 0
+    retweetsPalavra = 0
+    respostasPalavra = 0
+    favoritosPalavra = 0
+    cliquesNoPerfilPalavra = 0
+    
+    impressoesTotal = 0
+    engajamentosTotal = 0
+    retweetsTotal = 0
+    respostasTotal = 0
+    favoritosTotal = 0
+    cliquesNoPerfilTotal = 0
+    for tweet in listaDeTweets:
+        if palavra in tweet.texto: #se o texto contem a palavra
+            impressoesPalavra += tweet.impressoes
+            engajamentosPalavra += tweet.engajamentos
+            retweetsPalavra += tweet.retweets
+            respostasPalavra += tweet.respostas
+            favoritosPalavra += tweet.favoritos
+            cliquesNoPerfilPalavra += tweet.cliquesNoPerfil
+        impressoesTotal += tweet.impressoes
+        engajamentosTotal += tweet.engajamentos
+        retweetsTotal += tweet.retweets
+        respostasTotal += tweet.respostas
+        favoritosTotal += tweet.favoritos
+        cliquesNoPerfilTotal += tweet.cliquesNoPerfil
+        
+    return (impressoesPalavra/impressoesTotal,
+            engajamentosPalavra/engajamentosTotal,                             
+            retweetsPalavra/retweetsTotal,
+            respostasPalavra/respostasTotal,
+            favoritosPalavra/favoritosTotal,
+            cliquesNoPerfilPalavra/cliquesNoPerfilTotal)
+#print(pesquisaPorPalavrasMEDIA(listaTweetsCompletos,"o"))
