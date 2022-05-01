@@ -1,5 +1,52 @@
 from main import metodosEInicializacao as metodos
 
+def opcaoPalavras(mainClass):
+    opcao = 0
+    while(opcao <= 6 and opcao >= 0):
+        print("Digite a opcao do programa: (0 para sair)")
+        print("1. Pesquisa por palavra retornando dados brutos " 
+        +"\n 2. Pesquisa por palavra retornando porcentagens "
+        +"\n 3. Retornar o usuario que mais interage"
+        +"\n 4. Retornar o numero de posts com o usuario"
+        +"\n 5. Retornar o usuario em que as interacoes possuem mais engajamento"
+        +"\n 6. Retornar o usuario em que as interacoes possuem mais impressoes"
+        +"\n 0. Voltar ao menu")
+        opcao = int(input())
+
+        if(opcao == 1):
+            print("Digite a palavra a ser pesquisada: ")
+            palavra = input()
+            resultado = mainClass.pesquisaPorPalavras(mainClass.listaTweetsCompletos,palavra)
+            print("Existem",resultado[0],"tweets com essa palavra", "\nEla possui: ", 
+            "\nImpressoes: ",resultado[1], 
+            "\nEngajamentos: ",resultado[2],
+            "\nRetweets: ",resultado[3], 
+            "\nRespostas: ",resultado[4],
+            "\nFavoritos: ",resultado[5], 
+            "\nCliques no perfil: ",resultado[6])
+        elif(opcao == 2):
+            print("Digite a palavra a ser pesquisada: ")
+            palavra = input()
+            resultado = mainClass.pesquisaPorPalavrasMEDIA(mainClass.listaTweetsCompletos,palavra)
+            print("Essa palavra esta presente em : ""{:.5%}".format(resultado[0]),"dos tweets" "\nEla possui: ", 
+            "\nImpressoes: ","{:.5%}".format(resultado[1]), 
+            "\nEngajamentos: ","{:.5%}".format(resultado[2]),
+            "\nRetweets: ","{:.5%}".format(resultado[3]), 
+            "\nRespostas: ","{:.5%}".format(resultado[4]),
+            "\nFavoritos: ","{:.5%}".format(resultado[5]), 
+            "\nCliques no perfil: ","{:.5%}".format(resultado[6]))
+        elif(opcao == 3):
+            print("n implementado")
+        elif(opcao == 4):
+            print("n implementado")
+        elif(opcao == 5):
+            print("n implementado")
+        elif(opcao == 6):
+            print("n implementado")
+        elif(opcao == 0):
+             return 
+
+
 def opcaoMaior(mainClass):
     opcao = 0
     while(opcao <= 6 and opcao >= 0):
@@ -99,5 +146,6 @@ def menu():
         if(opcao == 3):
             opcaoMaiorHorario(mainClass)
         if(opcao == 4):
-            print("n implementado")
+            opcaoPalavras(mainClass)
+            #print("n implementado")
 menu()

@@ -169,13 +169,8 @@ class metodosEInicializacao:
         favoritosPalavra = 0
         cliquesNoPerfilPalavra = 0
         
-        impressoesTotal = 0
-        engajamentosTotal = 0
-        retweetsTotal = 0
-        respostasTotal = 0
-        favoritosTotal = 0
-        cliquesNoPerfilTotal = 0
         for tweet in listaDeTweets:
+            
             if palavra in tweet.texto: #se o texto contem a palavra
                 tweetsComPalavra+= 1
                 impressoesPalavra += tweet.impressoes
@@ -184,12 +179,7 @@ class metodosEInicializacao:
                 respostasPalavra += tweet.respostas
                 favoritosPalavra += tweet.favoritos
                 cliquesNoPerfilPalavra += tweet.cliquesNoPerfil
-            impressoesTotal += tweet.impressoes
-            engajamentosTotal += tweet.engajamentos
-            retweetsTotal += tweet.retweets
-            respostasTotal += tweet.respostas
-            favoritosTotal += tweet.favoritos
-            cliquesNoPerfilTotal += tweet.cliquesNoPerfil
+            
             
         return (tweetsComPalavra,
                 impressoesPalavra,
@@ -204,6 +194,8 @@ class metodosEInicializacao:
     #retorna quantos tweets possuem tal palavra
     #junto com a porcentagem de engajamento sobre os tweets com aquela palavra
     def pesquisaPorPalavrasMEDIA(self,listaDeTweets,palavra):
+        tweetsComPalavra = 0
+        tweetsTotal = 0
         impressoesPalavra = 0
         engajamentosPalavra = 0
         retweetsPalavra = 0
@@ -218,21 +210,25 @@ class metodosEInicializacao:
         favoritosTotal = 0
         cliquesNoPerfilTotal = 0
         for tweet in listaDeTweets:
-            if palavra in tweet.texto: #se o texto contem a palavra
-                impressoesPalavra += tweet.impressoes
-                engajamentosPalavra += tweet.engajamentos
-                retweetsPalavra += tweet.retweets
-                respostasPalavra += tweet.respostas
-                favoritosPalavra += tweet.favoritos
-                cliquesNoPerfilPalavra += tweet.cliquesNoPerfil
+            tweetsTotal += 1
             impressoesTotal += tweet.impressoes
             engajamentosTotal += tweet.engajamentos
             retweetsTotal += tweet.retweets
             respostasTotal += tweet.respostas
             favoritosTotal += tweet.favoritos
             cliquesNoPerfilTotal += tweet.cliquesNoPerfil
+            if palavra in tweet.texto: #se o texto contem a palavra
+                tweetsComPalavra += 1
+                impressoesPalavra += tweet.impressoes
+                engajamentosPalavra += tweet.engajamentos
+                retweetsPalavra += tweet.retweets
+                respostasPalavra += tweet.respostas
+                favoritosPalavra += tweet.favoritos
+                cliquesNoPerfilPalavra += tweet.cliquesNoPerfil
             
-        return (impressoesPalavra/impressoesTotal,
+            
+        return (tweetsComPalavra/tweetsTotal,
+                impressoesPalavra/impressoesTotal,
                 engajamentosPalavra/engajamentosTotal,                             
                 retweetsPalavra/retweetsTotal,
                 respostasPalavra/respostasTotal,
