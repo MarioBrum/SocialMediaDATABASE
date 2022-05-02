@@ -1,4 +1,6 @@
 import pandas as pd
+import re
+from re import search
 from classeInicial import idtextoTweet as idT #id + texto
 from classeFinal import tweetCompleto as tC #tweet completo(classe com mais dados)
 
@@ -171,7 +173,7 @@ class metodosEInicializacao:
         
         for tweet in listaDeTweets:
             
-            if palavra in tweet.texto: #se o texto contem a palavra
+            if search(palavra,tweet.texto,re.IGNORECASE): #se o texto contem a palavra
                 tweetsComPalavra+= 1
                 impressoesPalavra += tweet.impressoes
                 engajamentosPalavra += tweet.engajamentos
@@ -217,7 +219,7 @@ class metodosEInicializacao:
             respostasTotal += tweet.respostas
             favoritosTotal += tweet.favoritos
             cliquesNoPerfilTotal += tweet.cliquesNoPerfil
-            if palavra in tweet.texto: #se o texto contem a palavra
+            if search(palavra,tweet.texto,re.IGNORECASE): #se o texto contem a palavra
                 tweetsComPalavra += 1
                 impressoesPalavra += tweet.impressoes
                 engajamentosPalavra += tweet.engajamentos
@@ -235,3 +237,41 @@ class metodosEInicializacao:
                 favoritosPalavra/favoritosTotal,
                 cliquesNoPerfilPalavra/cliquesNoPerfilTotal)
     #print(pesquisaPorPalavrasMEDIA(listaTweetsCompletos,"o"))
+
+
+    def numeroTweetsPorUsuario(self,listaDeTweets,usuario):
+        tweetsUsuario = 0
+        for tweet in listaDeTweets:
+            '''
+            if usuario in tweet.texto: #se o texto contem a palavra
+                tweetsUsuario += 1
+            '''
+            if search(usuario,tweet.texto,re.IGNORECASE):
+                tweetsUsuario += 1
+
+            '''
+            if tweet.texto.find(usuario) != -1:
+                tweetsUsuario = tweetsUsuario + 1
+            '''
+        return (tweetsUsuario)
+
+    def usuarioQueMaisAparece(self,listaDeTweets):
+        maior = 0
+        nomeMaiorUsuario = ''
+        for tweet in listaDeTweets:
+            '''
+            if usuario in tweet.texto: #se o texto contem a palavra
+                tweetsUsuario += 1
+            '''
+            resultado = tweet.texto.find('@')
+            resultado += 1
+            if resultado != -1: #se tiver um @ no texto
+                nomeUsuario = ''
+                while(tweet.texto[resultado] != None and resultado < len(tweet.texto)-1):
+                    nomeUsuario += tweet.texto[resultado]
+                    resultado += 1
+                    tweetsUsuario = 199#self.numeroTweetsPorUsuario(listaDeTweets,nomeUsuario)
+                if(maior < tweetsUsuario):
+                    maior = tweetsUsuario
+                    nomeMaiorUsuario = nomeUsuario
+        return (nomeMaiorUsuario,maior)

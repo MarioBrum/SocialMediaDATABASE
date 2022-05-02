@@ -36,9 +36,14 @@ def opcaoPalavras(mainClass):
             "\nFavoritos: ","{:.5%}".format(resultado[5]), 
             "\nCliques no perfil: ","{:.5%}".format(resultado[6]))
         elif(opcao == 3):
+            #resultado = mainClass.usuarioQueMaisAparece(mainClass.listaTweetsCompletos)
+            #print("Usuario que mais aparece nos tweets: ",resultado[0],"Numero de aparicoes: ",resultado[1])
             print("n implementado")
         elif(opcao == 4):
-            print("n implementado")
+            print("Digite o usuario a ser pesquisado: ")
+            user = input()
+            print(mainClass.numeroTweetsPorUsuario(mainClass.listaTweetsCompletos,user))
+            #print("n implementado")
         elif(opcao == 5):
             print("n implementado")
         elif(opcao == 6):
