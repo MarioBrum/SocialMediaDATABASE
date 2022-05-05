@@ -1,4 +1,5 @@
 from main import metodosEInicializacao as metodos
+import os
 
 def opcaoPalavras(mainClass):
     opcao = 0
@@ -12,7 +13,9 @@ def opcaoPalavras(mainClass):
         +"\n 6. Retornar o usuario em que as interacoes possuem mais impressoes"
         +"\n 0. Voltar ao menu")
         opcao = int(input())
-
+        #import os
+        os.system('cls') or None
+        
         if(opcao == 1):
             print("Digite a palavra a ser pesquisada: ")
             palavra = input()
@@ -64,7 +67,8 @@ def opcaoMaior(mainClass):
         +"\n 6. Retornar tweet com mais cliques no perfil"
         +"\n 0. Voltar ao menu")
         opcao = int(input())
-
+        #import os
+        os.system('cls') or None
         if(opcao == 1):
             mainClass.maiorGenerico(mainClass.listaTweetsCompletos,'engajamentos')
         elif(opcao == 2):
@@ -97,6 +101,8 @@ def opcaoMaiorHorario(mainClass):
         +"\n 8. Retornar horario com mais cliques no perfil"
         +"\n 0. Voltar ao menu")
         opcao = int(input())
+        #import os
+        os.system('cls') or None
 
         if(opcao == 1):
             for i in range (0,len(listaHorarios)):
@@ -139,7 +145,8 @@ def menu():
         +"\n 4. Opcoes com relacao a pesquisa de palavras/usuarios"
         +"\n 0. Sair")
         opcao = int(input())
-
+        #import os
+        os.system('cls') or None
         if(opcao == 0):
             print("programa finalizado!")
             exit()
