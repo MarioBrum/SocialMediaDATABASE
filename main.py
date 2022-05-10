@@ -254,28 +254,7 @@ class metodosEInicializacao:
                 tweetsUsuario = tweetsUsuario + 1
             '''
         return (tweetsUsuario)
-
-    def usuarioQueMaisAparece(self,listaDeTweets):
-        maior = 0
-        nomeMaiorUsuario = ''
-        for tweet in listaDeTweets:
-            '''
-            if usuario in tweet.texto: #se o texto contem a palavra
-                tweetsUsuario += 1
-            '''
-            resultado = tweet.texto.find('@')
-            resultado += 1
-            if resultado != -1: #se tiver um @ no texto
-                nomeUsuario = ''
-                while(tweet.texto[resultado] != None and resultado < len(tweet.texto)-1):
-                    nomeUsuario += tweet.texto[resultado]
-                    resultado += 1
-                    tweetsUsuario = 199#self.numeroTweetsPorUsuario(listaDeTweets,nomeUsuario)
-                if(maior < tweetsUsuario):
-                    maior = tweetsUsuario
-                    nomeMaiorUsuario = nomeUsuario
-        return (nomeMaiorUsuario,maior)
-
+ 
     def listaUsuariosInteracaoTupla(self,listaDeTweets):
         #texto = "meu amigo @vvdc se encontrou com outro amigo @aw_moon e eu queria saber se eu @vayno consigo retirar os usuarios pelo @ mais nome deles @"
         dicionarioUsuarios = {}
@@ -304,12 +283,64 @@ class metodosEInicializacao:
         return dicionarioUsuarios
     
     def maiorInteracao(self,dicionarioUsuarios):
-        listaUsuarios = dicionarioUsuarios.keys()
-        listaValores = dicionarioUsuarios.values()
-        maiorValor = list(listaValores)[0]
-        maiorUsuario = list(listaUsuarios)[0]
+        listaUsuarios = list(dicionarioUsuarios.keys())
+        listaValores = list(dicionarioUsuarios.values())
+        maiorValor = listaValores[0]
+        maiorUsuario = listaUsuarios[0]
         for i in range(0,len(listaValores)):
-            if(list(listaValores)[i] > maiorValor):
-                maiorValor = list(listaValores)[i]
-                maiorUsuario = list(listaUsuarios)[i]
+            if(listaValores[i] > maiorValor):
+                maiorValor = listaValores[i]
+                maiorUsuario = listaUsuarios[i]
+        return (maiorUsuario,maiorValor)
+
+    def formataInteracaoEngajamentoImpressoes(self,listaDeTweets):
+        dicionarioFormatadoEI = {}
+        for tweet in listaDeTweets:
+            texto = tweet.texto
+            indiceFind = texto.find("@")
+            while(indiceFind != -1):
+                #print(indiceFind)
+                indice = indiceFind 
+                stringUsuario = ''
+                while(texto[indice] != ' ' and len(texto)-1 > indice):
+                    indice+=1
+                    stringUsuario += texto[indice]
+        
+                if(len(stringUsuario) > 1):
+                    #print(stringUsuario)
+                    if(not stringUsuario in dicionarioFormatadoEI.keys()):
+                        dicionarioFormatadoEI.update({stringUsuario:(1,tweet.engajamentos,tweet.impressoes)}) #tupla(interacao,engajamentos,impressoes)
+                    else:
+                        valor = dicionarioFormatadoEI.pop(stringUsuario)
+                        interacoes = valor[0] + 1
+                        engajamentos = valor[1] + tweet.engajamentos
+                        impressoes = valor[2] + tweet.impressoes
+                        dicionarioFormatadoEI.update({stringUsuario:(interacoes,engajamentos,impressoes)})
+
+                texto = texto[indiceFind + 1:len(texto)]
+                indiceFind = texto.find("@")
+        return dicionarioFormatadoEI
+    
+    def maiorInteracao_Engajamento(self,dicionario):
+        listaUsuarios = list(dicionario.keys())
+        listaValores = list(dicionario.values())
+        maiorValor = listaValores[0][1]//listaValores[0][0] #index [i][1] engajamento
+        maiorUsuario = listaUsuarios[0]
+        for i in range(0,len(listaValores)):
+            razao = listaValores[0][1]//listaValores[0][0]
+            if(razao > maiorValor):
+                maiorValor = razao
+                maiorUsuario = listaUsuarios[i]
+        return (maiorUsuario,maiorValor)
+
+    def maiorInteracao_Impressao(self,dicionario):
+        listaUsuarios = list(dicionario.keys())
+        listaValores = list(dicionario.values())
+        maiorValor = listaValores[0][2]//listaValores[0][0] #index [i][2] impressao
+        maiorUsuario = listaUsuarios[0]
+        for i in range(0,len(listaValores)):
+            razao = listaValores[0][2]//listaValores[0][0]
+            if(razao > maiorValor):
+                maiorValor = razao
+                maiorUsuario = listaUsuarios[i]
         return (maiorUsuario,maiorValor)

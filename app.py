@@ -1,9 +1,13 @@
+from tkinter.dialog import DIALOG_ICON
 from main import metodosEInicializacao as metodos
 import os
 
 def opcaoPalavras(mainClass):
     opcao = 0
+    #dicionario de interacoes
     dicionarioInteracoes = mainClass.listaUsuariosInteracaoTupla(mainClass.listaTweetsCompletos)
+    #dicionarios de interacoes engajamentos e impressoes
+    dicionarioInteracoesEi = mainClass.formataInteracaoEngajamentoImpressoes(mainClass.listaTweetsCompletos)
     while(opcao <= 7 and opcao >= 0):
         print("Digite a opcao do programa: (0 para sair)")
         print("1. Pesquisa por palavra retornando dados brutos " 
@@ -49,9 +53,13 @@ def opcaoPalavras(mainClass):
             print(mainClass.numeroTweetsPorUsuario(mainClass.listaTweetsCompletos,user))
             #print("n implementado")
         elif(opcao == 5):
-            print("n implementado")
+            #print("n implementado")
+            resultado = mainClass.maiorInteracao_Engajamento(dicionarioInteracoesEi)
+            print("Usuario com maior taxa de interacao/engajamento: ", resultado[0],"Taxa: ",resultado[1])
         elif(opcao == 6):
-            print("n implementado")
+            #print("n implementado")
+            resultado = mainClass.maiorInteracao_Impressao(dicionarioInteracoesEi)
+            print("Usuario com maior taxa de interacao/impressao: ", resultado[0],"Taxa: ",resultado[1])
         elif(opcao == 7):
             print("Usuario/Numero de Interacoes")
             print(mainClass.listaUsuariosInteracaoTupla(mainClass.listaTweetsCompletos))
