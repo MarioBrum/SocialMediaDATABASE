@@ -275,3 +275,41 @@ class metodosEInicializacao:
                     maior = tweetsUsuario
                     nomeMaiorUsuario = nomeUsuario
         return (nomeMaiorUsuario,maior)
+
+    def listaUsuariosInteracaoTupla(self,listaDeTweets):
+        #texto = "meu amigo @vvdc se encontrou com outro amigo @aw_moon e eu queria saber se eu @vayno consigo retirar os usuarios pelo @ mais nome deles @"
+        dicionarioUsuarios = {}
+        for tweet in listaDeTweets:
+            texto = tweet.texto
+            indiceFind = texto.find("@")
+            while(indiceFind != -1):
+                #print(indiceFind)
+                indice = indiceFind 
+                stringUsuario = ''
+                while(texto[indice] != ' ' and len(texto)-1 > indice):
+                    indice+=1
+                    stringUsuario += texto[indice]
+        
+                if(len(stringUsuario) > 1):
+                    #print(stringUsuario)
+                    if(not stringUsuario in dicionarioUsuarios.keys()):
+                        dicionarioUsuarios.update({stringUsuario:1})
+                    else:
+                        valor = dicionarioUsuarios.pop(stringUsuario)
+                        valor += 1
+                        dicionarioUsuarios.update({stringUsuario:valor})
+
+                texto = texto[indiceFind + 1:len(texto)]
+                indiceFind = texto.find("@")
+        return dicionarioUsuarios
+    
+    def maiorInteracao(self,dicionarioUsuarios):
+        listaUsuarios = dicionarioUsuarios.keys()
+        listaValores = dicionarioUsuarios.values()
+        maiorValor = list(listaValores)[0]
+        maiorUsuario = list(listaUsuarios)[0]
+        for i in range(0,len(listaValores)):
+            if(list(listaValores)[i] > maiorValor):
+                maiorValor = list(listaValores)[i]
+                maiorUsuario = list(listaUsuarios)[i]
+        return (maiorUsuario,maiorValor)

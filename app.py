@@ -3,7 +3,8 @@ import os
 
 def opcaoPalavras(mainClass):
     opcao = 0
-    while(opcao <= 6 and opcao >= 0):
+    dicionarioInteracoes = mainClass.listaUsuariosInteracaoTupla(mainClass.listaTweetsCompletos)
+    while(opcao <= 7 and opcao >= 0):
         print("Digite a opcao do programa: (0 para sair)")
         print("1. Pesquisa por palavra retornando dados brutos " 
         +"\n 2. Pesquisa por palavra retornando porcentagens "
@@ -11,6 +12,7 @@ def opcaoPalavras(mainClass):
         +"\n 4. Retornar o numero de posts com o usuario"
         +"\n 5. Retornar o usuario em que as interacoes possuem mais engajamento"
         +"\n 6. Retornar o usuario em que as interacoes possuem mais impressoes"
+        +"\n 7. Retornar lista com todos os usuarios e vezes que aparece"
         +"\n 0. Voltar ao menu")
         opcao = int(input())
         #import os
@@ -39,9 +41,8 @@ def opcaoPalavras(mainClass):
             "\nFavoritos: ","{:.5%}".format(resultado[5]), 
             "\nCliques no perfil: ","{:.5%}".format(resultado[6]))
         elif(opcao == 3):
-            #resultado = mainClass.usuarioQueMaisAparece(mainClass.listaTweetsCompletos)
-            #print("Usuario que mais aparece nos tweets: ",resultado[0],"Numero de aparicoes: ",resultado[1])
-            print("n implementado")
+            resultado = mainClass.maiorInteracao(dicionarioInteracoes)
+            print("Usuario: ",resultado[0],"Interacoes/Aparece em : ",resultado[1],"tweets.")
         elif(opcao == 4):
             print("Digite o usuario a ser pesquisado: ")
             user = input()
@@ -51,6 +52,10 @@ def opcaoPalavras(mainClass):
             print("n implementado")
         elif(opcao == 6):
             print("n implementado")
+        elif(opcao == 7):
+            print("Usuario/Numero de Interacoes")
+            print(mainClass.listaUsuariosInteracaoTupla(mainClass.listaTweetsCompletos))
+            #print("n implementado")
         elif(opcao == 0):
              return 
 
